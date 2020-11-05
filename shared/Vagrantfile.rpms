@@ -17,7 +17,8 @@ Vagrant.configure('2') do |config|
     name:   "Install RPMs required by Spectrum Scale Installation Toolkit",
     inline: "
       /usr/bin/yum install -y\
-        net-tools
+        net-tools\
+        python2
     "
 
   # Install RPMs required by Spectrum Scale core
@@ -44,11 +45,23 @@ Vagrant.configure('2') do |config|
     name:   "Install RPMs required by Spectrum Scale to build portability layer",
     inline: "
       /usr/bin/yum install -y\
-        kernel-devel-$(uname -r)\
-        kernel-headers-$(uname -r)\
+        kernel-devel\
+        kernel-headers\
         cpp\
         gcc\
-        gcc-c++
+        gcc-c++\
+        binutils\
+        elfutils\
+        elfutils-devel\
+        make
+    "
+
+  # Install RPMs required by Spectrum Scale to build AFM
+  config.vm.provision "shell",
+    name:   "Install RPMs required by Spectrum Scale to build AFM",
+    inline: "
+      /usr/bin/yum install -y\
+        nfs-utils
     "
 
   # Install RPMs required by Spectrum Scale GUI
@@ -81,25 +94,14 @@ Vagrant.configure('2') do |config|
         libverto-devel\
         openssl-devel\
         pcre-devel\
-        perl-Class-Load\
-        perl-Class-Singleton\
-        perl-Data-Dumper\
-        perl-Data-OptList\
-        perl-DateTime\
-        perl-DateTime-Locale\
-        perl-DateTime-TimeZone\
-        perl-List-MoreUtils\
-        perl-Module-Implementation\
-        perl-Module-Runtime\
-        perl-Package-DeprecationManager\
-        perl-Package-Stash\
-        perl-Package-Stash-XS\
-        perl-Params-Util\
-        perl-Params-Validate\
-        perl-Sub-Install\
-        perl-Try-Tiny\
         zlib-devel
     "
 
+  # Run yum update
+    config.vm.provision "shell",
+    name:   "Run yum update",
+    inline: "
+      /usr/bin/yum update -y
+    "
 
 end

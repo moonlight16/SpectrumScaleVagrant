@@ -24,9 +24,26 @@ https://localhost:8888
 --------------------------------------------------------------------------
 EOT
 
+# Check for these ENV variables:
+#   GPFS_PROVIDER:
+#     The provider to use, i.e. 'VirtualBox'
+#   GPFS_VERSION:
+#     Version of GPFS, i.e. '5.0.5.3'
+#   GPFS_EDITION:
+#     Edition of GPFS, i.e. "Advanced", "Data_Management", "Erasure_Code"
+#   GPFS_BINARY:
+#     Path to GPFS binaries
+#   GPFS_CLUSTER_NAME:
+#     Name of the cluster
+#   GPFS_NUM_NODES:
+#     Number of nodes
+#   GPFS_NUM_DISKS:
+#     Number of disks
+#
 
 # Set provider
 $SpectrumScaleVagrant_provider = 'VirtualBox'
+
 
 
 # Load common settings
